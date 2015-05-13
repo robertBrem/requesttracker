@@ -5,6 +5,7 @@ import expert.optimist.requesttracker.request.entity.Request;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ public class RequesttrackerService {
     }
 
     public Request create(Request request) {
+        request.setCallTime(LocalDateTime.now());
         return em.merge(request);
     }
 
