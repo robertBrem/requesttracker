@@ -16,8 +16,11 @@ public class RequesttrackerEndpoint {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Set<Request> getAll() {
-        return service.getAll();
+    public Set<Request> findByClassName(@QueryParam("className") String className) {
+        if (className == null) {
+            return service.getAll();
+        }
+        return service.findByClassName(className);
     }
 
     @POST

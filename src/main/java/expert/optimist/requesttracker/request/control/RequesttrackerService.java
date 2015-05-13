@@ -19,6 +19,14 @@ public class RequesttrackerService {
         return new HashSet<>(em.createNamedQuery("Requests.getAll").getResultList());
     }
 
+    @SuppressWarnings("unchecked")
+    public Set<Request> findByClassName(String className) {
+        return new HashSet<>(
+                em.createNamedQuery("Requests.findByClassName")
+                        .setParameter("className", className)
+                        .getResultList());
+    }
+
     public Request create(Request request) {
         return em.merge(request);
     }
