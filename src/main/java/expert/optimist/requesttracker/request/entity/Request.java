@@ -1,5 +1,6 @@
 package expert.optimist.requesttracker.request.entity;
 
+import expert.optimist.requesttracker.LocalDateTimeAdapter;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,7 +38,9 @@ public class Request {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> functionParameterValues;
 
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime callTime;
+
     private String callerIp;
     private Integer callerPort;
     private String callerHost;

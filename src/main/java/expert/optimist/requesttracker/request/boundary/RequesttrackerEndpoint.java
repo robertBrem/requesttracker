@@ -6,6 +6,8 @@ import expert.optimist.requesttracker.request.entity.Request;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Set;
 
 @Path("requests")
@@ -21,6 +23,13 @@ public class RequesttrackerEndpoint {
             return service.getAll();
         }
         return service.findByClassName(className);
+    }
+
+    @Path("perHour")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<LocalDateTime, Set<Request>> findPerHour(@QueryParam("className") String className) {
+        return service.findPerHour(className);
     }
 
     @POST
